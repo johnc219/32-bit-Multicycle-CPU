@@ -1,28 +1,28 @@
 `timescale 1ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
-// Company: 
+// Company:
 // Engineer:
 //
 // Create Date:   15:52:00 12/02/2014
-// Design Name:   controller3
+// Design Name:   controller
 // Module Name:   /ad/eng/users/j/o/johnc219/EC413/MultiCycleCPU3/controllerTest3.v
 // Project Name:  MultiCycleCPU3
-// Target Device:  
-// Tool versions:  
-// Description: 
+// Target Device:
+// Tool versions:
+// Description:
 //
-// Verilog Test Fixture created by ISE for module: controller3
+// Verilog Test Fixture created by ISE for module: controller
 //
 // Dependencies:
-// 
+//
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////
 
-module controllerTest3;
+module controllerTest;
 
 	// Inputs
 	reg [5:0] opcode;
@@ -43,26 +43,26 @@ module controllerTest3;
 	wire RegReadSel;
 
 	// Instantiate the Unit Under Test (UUT)
-	controller3 uut (
-		.opcode(opcode), 
-		.clk(clk), 
-		.reset(reset), 
-		.PCWrite(PCWrite), 
-		.PCWriteCond(PCWriteCond), 
-		.DMEMWrite(DMEMWrite), 
-		.IRWrite(IRWrite), 
-		.MemtoReg(MemtoReg), 
-		.PCSource(PCSource), 
-		.ALUSel(ALUSel), 
-		.ALUSrcA(ALUSrcA), 
-		.ALUSrcB(ALUSrcB), 
-		.RegWrite(RegWrite), 
+	controller uut (
+		.opcode(opcode),
+		.clk(clk),
+		.reset(reset),
+		.PCWrite(PCWrite),
+		.PCWriteCond(PCWriteCond),
+		.DMEMWrite(DMEMWrite),
+		.IRWrite(IRWrite),
+		.MemtoReg(MemtoReg),
+		.PCSource(PCSource),
+		.ALUSel(ALUSel),
+		.ALUSrcA(ALUSrcA),
+		.ALUSrcB(ALUSrcB),
+		.RegWrite(RegWrite),
 		.RegReadSel(RegReadSel)
 	);
-	
+
 	always
 	#5 clk = ~clk;
-	
+
 	initial begin
 		// Initialize Inputs
 		opcode = 0;
@@ -71,13 +71,13 @@ module controllerTest3;
 
 		// Wait 100 ns for global reset to finish
 		#100;
-        
+
 		// Add stimulus here
 		// clear reset
 		reset = 0;
-		
+
 		// type				  //FN		// state sequence
-		
+
 		// R-TYPE
 		opcode <= 6'b010000; //MOV		0 1 2 6
 		#55;
@@ -94,8 +94,8 @@ module controllerTest3;
 		opcode <= 6'b010110; //XOR		0 1 2 6
 		#40;
 		opcode <= 6'b010111; //SLT		0 1 2 6
-		
-		
+
+
 		// JUMP
 		opcode <= 6'b000001; // J		0 1 14 12
 		#30;
@@ -104,7 +104,7 @@ module controllerTest3;
 		#30;
 		// I-type
 		opcode <= 6'b110010; // ADDI	0 1 3 6
-		#40; 
+		#40;
 		opcode <= 6'b110011; // SUBI	0 1 3 6
 		#40;
 		opcode <= 6'b110100; // ORI		0 1 4 6
@@ -127,8 +127,7 @@ module controllerTest3;
 		#20;
 		reset <= 0;
 		opcode <= 6'b000000; // NOP		0 1
-	
-	end
-      
-endmodule
 
+	end
+
+endmodule
